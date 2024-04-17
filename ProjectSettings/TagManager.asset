@@ -4,12 +4,14 @@
 TagManager:
   serializedVersion: 2
   tags:
-  - lightToggle
+  - Ramassable
+  - Light
+  - Telecommande
   layers:
   - Default
   - TransparentFX
   - Ignore Raycast
-  - 
+  - CameraHide
   - Water
   - UI
   - 
