@@ -8,7 +8,7 @@ public class ClickableObject : MonoBehaviour
     public PortalTrigger portalTrigger; // Référence au script PortalTrigger
     public GameObject portalBg; // Objet à activer
 
-    void OnMouseDown()
+    public void OnMouseDown()
     {
         // Activer l'animation d'ouverture du portail
         if (openAnimation && openAnimation2 && openAnimation3 != null)
