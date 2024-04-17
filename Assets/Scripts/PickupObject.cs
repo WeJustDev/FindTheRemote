@@ -55,16 +55,22 @@ public class PickupObject : MonoBehaviour
         }
 
         // Si un objet est ramassé et que le joueur appuie sur la touche "E", passe l'animation TelecommandePush à true
-        if (Input.GetMouseButtonDown(0) && pickedUpObject.CompareTag("Telecommande"))
+        if (Input.GetMouseButtonDown(0) && pickedUpObject != null && pickedUpObject.CompareTag("Telecommande"))
         {
             animator.SetBool("TelecommandePush", true);
             StartCoroutine(AnimateButton());
+
+            // Si l'objet ramassé est la télécommande et que le bouton gauche de la souris est cliqué, active les animations et le passage du portail
+            ClickableObject clickableObject = pickedUpObject.GetComponent<ClickableObject>();
+            if (clickableObject != null)
+            {
+                clickableObject.OnMouseDown();
+            }
         }
         else
         {
             animator.SetBool("TelecommandePush", false);
         }
-
     }
 
     IEnumerator AnimateButton()
