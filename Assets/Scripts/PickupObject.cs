@@ -20,6 +20,8 @@ public class PickupObject : MonoBehaviour
 
     public Transform wrist;
 
+    public GameObject pickupUI;
+
     // Indique si l'objet est actuellement ramassé
     private bool isPickedUp = false;
 
@@ -65,6 +67,23 @@ public class PickupObject : MonoBehaviour
             animator.SetBool("TelecommandePush", false);
         }
 
+        RaycastHit hit;
+        if (Physics.Raycast(playerCamera.transform.position, playerCamera.transform.forward, out hit, pickupRange))
+        {
+            if (hit.collider.CompareTag("Ramassable"))
+            {
+                pickupUI.SetActive(true);
+            }
+            else
+            {
+                pickupUI.SetActive(false);
+            }
+        }
+        else
+        {
+            pickupUI.SetActive(false);
+        }
+        
     }
 
     IEnumerator AnimateButton()
