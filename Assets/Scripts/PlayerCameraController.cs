@@ -13,7 +13,7 @@ public class PlayerCameraController : MonoBehaviour
     float rotationX = 0.0f;
     float rotationZ = 0.0f; // Rotation sur l'axe Z de la caméra
 
-    void Start()
+    public void Start()
     {
         Cursor.lockState = CursorLockMode.Locked; // Verrouille le curseur au centre de l'écran
         targetFOV = normalFOV; // FOV initial
