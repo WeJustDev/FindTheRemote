@@ -57,7 +57,7 @@ public class PickupObject : MonoBehaviour
         }
 
         // Si un objet est ramassé et que le joueur appuie sur la touche "E", passe l'animation TelecommandePush à true
-        if (Input.GetMouseButtonDown(0) && pickedUpObject.CompareTag("Telecommande"))
+        if (pickedUpObject != null && Input.GetMouseButtonDown(0) && pickedUpObject.CompareTag("Telecommande"))
         {
             animator.SetBool("TelecommandePush", true);
             StartCoroutine(AnimateButton());
