@@ -464,6 +464,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e92d571706ec38847826f0f4b0a5a383, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  timerToggle: {fileID: 1171290687}
 --- !u!1 &587949594
 GameObject:
   m_ObjectHideFlags: 0
@@ -1163,7 +1164,7 @@ GameObject:
   - component: {fileID: 1171290686}
   - component: {fileID: 1171290687}
   m_Layer: 0
-  m_Name: Toggle
+  m_Name: ShowTimer
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1429,6 +1430,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e92d571706ec38847826f0f4b0a5a383, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  timerToggle: {fileID: 1171290687}
 --- !u!1 &1569931188
 GameObject:
   m_ObjectHideFlags: 0
@@ -1615,7 +1617,7 @@ GameObject:
   - component: {fileID: 1768763180}
   - component: {fileID: 1768763179}
   m_Layer: 5
-  m_Name: Canvas
+  m_Name: MainMenu
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
