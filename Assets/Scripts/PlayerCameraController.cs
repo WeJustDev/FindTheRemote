@@ -35,11 +35,11 @@ public class PlayerCameraController : MonoBehaviour
         // Rotation sur l'axe Z en fonction de la direction de rotation horizontale de la vue, seulement lorsque Shift est pressé
         if (Input.GetKey(KeyCode.LeftShift) || Input.GetKey(KeyCode.RightShift))
         {
-            rotationZ = Mathf.Lerp(rotationZ, -mouseX, Time.deltaTime * sensitivity / 3f);
+            rotationZ = Mathf.Lerp(rotationZ, -mouseX, Time.deltaTime * sensitivity / 0.1f);
         }
         else
         {
-            rotationZ = Mathf.Lerp(rotationZ, 0.0f, Time.deltaTime * sensitivity / 3f);
+            rotationZ = Mathf.Lerp(rotationZ, 0.0f, Time.deltaTime * sensitivity / 0.1f);
         }
 
         // Détection de la touche Shift et ajustement de la FOV cible
