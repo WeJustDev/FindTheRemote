@@ -40,7 +40,7 @@ public class PlayerMovement : MonoBehaviour
 
             // Appliquer la vitesse de déplacement
             moveDirection = move * speed;
-           
+            
 
             // Sprint
             if (Input.GetKey(KeyCode.LeftShift)) // Ne permet pas de sprinter quand accroupi
