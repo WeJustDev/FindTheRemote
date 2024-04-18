@@ -7,6 +7,8 @@ TagManager:
   - Ramassable
   - Light
   - Telecommande
+  - TAZOFX
+  - Rubis
   layers:
   - Default
   - TransparentFX

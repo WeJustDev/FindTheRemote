@@ -28,9 +28,7 @@ public class PlayerMovement : MonoBehaviour
     }
 
     void Update()
-    {
-
-        
+    {   
         // Vérifier si le joueur est au sol
         if (controller.isGrounded)
         {
