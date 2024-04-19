@@ -17,4 +17,5 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/SystemPortal.unity
     guid: ef99b7f61b907c84bae6512448b9b363
-  m_configObjects: {}
+  m_configObjects:
+    com.unity.input.settings: {fileID: 11400000, guid: 1e957596de51cc14b89b7f87910eb1c5, type: 2}

@@ -50,7 +50,7 @@ public class PauseMenu : MonoBehaviour
         SceneManager.LoadScene("MainMenu");
         isPaused = false;
         cameraController.enabled = true;
-        Cursor.lockState = CursorLockMode.Locked;
-        Cursor.visible = false;
+        Cursor.lockState = CursorLockMode.None;
+        Cursor.visible = true;
     }
 }

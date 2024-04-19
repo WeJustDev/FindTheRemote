@@ -4,13 +4,19 @@ using UnityEngine.UI;
 
 public class MainMenu : MonoBehaviour
 {
+    public GameObject settingsMenu;
+    public GameObject mainMenu;
     public Toggle timerToggle;
     public Toggle proximityToggle;
+
 
     void Start()
     {
         timerToggle.isOn = PlayerPrefs.GetInt("ShowTimer", 1) == 1;
         proximityToggle.isOn = PlayerPrefs.GetInt("ShowProximity", 1) == 1;
+
+        settingsMenu.SetActive(false);
+        mainMenu.SetActive(true);
     }
     public void PlayGame()
     {
