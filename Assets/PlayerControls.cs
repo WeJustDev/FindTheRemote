@@ -37,15 +37,18 @@ public class PlayerControls : MonoBehaviour
         animator = GetComponent<Animator>();
     }
 
-    public void OnGrab()
+    public void OnGrab(InputAction.CallbackContext ctxt)
     {
-        if (objetEnMain != null)
+        if(ctxt.performed)
         {
-            PoserObjet();
-        }
-        else
-        {
-            RamasserObjet();
+            if (objetEnMain != null)
+            {
+                PoserObjet();
+            }
+            else
+            {
+                RamasserObjet();
+            }
         }
     }
 
@@ -145,21 +148,22 @@ public class PlayerControls : MonoBehaviour
         animator.SetBool("Telecommande", false);
     }
 
-    public void OnPickup()
+    public void OnPickup(InputAction.CallbackContext ctxt)
     {
-        Debug.Log("Pickup");
-        if (!isPickedUp)
-        {
-            Pickup();
-        }
-        else
-        {
-            Drop();
-        }
-    
-        if (isPickedUp)
-        {
-            MovePickedUpObject();
+        if(ctxt.performed) {
+            if (!isPickedUp)
+            {
+                Pickup();
+            }
+            else
+            {
+                Drop();
+            }
+
+            if (isPickedUp)
+            {
+                MovePickedUpObject();
+            }
         }
     }
     
@@ -245,7 +249,7 @@ public class PlayerControls : MonoBehaviour
         {
             MovePickedUpObject();
         }
-    
+
         if (Input.GetMouseButtonDown(1) && objetEnMain != null)
         {   
             animator.SetBool("isThrowing", true);
