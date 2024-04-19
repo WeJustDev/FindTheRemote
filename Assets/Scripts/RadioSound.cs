@@ -50,7 +50,6 @@ public class RadioSound : MonoBehaviour
     }
 
     // Update is called once per frame
-    // Update is called once per frame
     void Update()
     {
         // Si la touche E est enfoncée
@@ -66,109 +65,105 @@ public class RadioSound : MonoBehaviour
                 // Si l'objet touché est cette radio
                 if (hit.transform == transform)
                 {
-                    // Vérifiez si la distance entre la caméra et la radio est inférieure ou égale à 1 mètre
-                    if (Vector3.Distance(Camera.main.transform.position, transform.position) <= 3f)
+                    // Si l'audio est en cours de lecture, arrêtez-le et désactivez les objets
+                    if (isPlaying)
                     {
-                        // Si l'audio est en cours de lecture, arrêtez-le et désactivez les objets
-                        if (isPlaying)
+                        if (audioSource != null)
                         {
-                            if (audioSource != null)
-                            {
-                                audioSource.Stop();
-                            }
-                            isPlaying = false;
+                            audioSource.Stop();
+                        }
+                        isPlaying = false;
 
-                            // Désactivez tous les objets
-                            foreach (GameObject discoObject in discoObjects)
-                            {
-                                discoObject.SetActive(false);
-                            }
+                        // Désactivez tous les objets
+                        foreach (GameObject discoObject in discoObjects)
+                        {
+                            discoObject.SetActive(false);
+                        }
 
-                            // Désactivez le changement de couleur
-                            if (discoLight != null)
-                            {
-                                discoLight.enabled = false;
-                                Debug.Log("DiscoLight disabled");
-                            }
+                        // Désactivez le changement de couleur
+                        if (discoLight != null)
+                        {
+                            discoLight.enabled = false;
+                            Debug.Log("DiscoLight disabled");
+                        }
 
-                            // Désactivez toutes les lumières enfants
-                            foreach (Transform child in transform)
+                        // Désactivez toutes les lumières enfants
+                        foreach (Transform child in transform)
+                        {
+                            Light childLight = child.GetComponent<Light>();
+                            if (childLight != null)
                             {
-                                Light childLight = child.GetComponent<Light>();
-                                if (childLight != null)
+                                childLight.enabled = false;
+                                DiscoLight childDiscoLight = child.GetComponent<DiscoLight>();
+                                if (childDiscoLight != null)
                                 {
-                                    childLight.enabled = false;
-                                    DiscoLight childDiscoLight = child.GetComponent<DiscoLight>();
-                                    if (childDiscoLight != null)
-                                    {
-                                        childDiscoLight.enabled = false;
-                                    }
+                                    childDiscoLight.enabled = false;
                                 }
-                            }
-
-                            // Allumez la lumière spéciale
-                            if (specialLight != null)
-                            {
-                                specialLight.enabled = true;
-                            }
-
-                            // Arrêtez le shake quand la radio est éteinte
-                            if (cameraShake != null)
-                            {
-                                cameraShake.StopShake();
-                                Debug.Log("Camera shake stopped");
                             }
                         }
-                        // Sinon, jouez l'audio et activez les objets
-                        else
+
+                        // Allumez la lumière spéciale
+                        if (specialLight != null)
                         {
-                            if (audioSource != null)
-                            {
-                                audioSource.Play();
-                            }
-                            isPlaying = true;
+                            specialLight.enabled = true;
+                        }
 
-                            // Activez tous les objets
-                            foreach (GameObject discoObject in discoObjects)
-                            {
-                                discoObject.SetActive(true);
-                            }
+                        // Arrêtez le shake quand la radio est éteinte
+                        if (cameraShake != null)
+                        {
+                            cameraShake.StopShake();
+                            Debug.Log("Camera shake stopped");
+                        }
+                    }
+                    // Sinon, jouez l'audio et activez les objets
+                    else
+                    {
+                        if (audioSource != null)
+                        {
+                            audioSource.Play();
+                        }
+                        isPlaying = true;
 
-                            // Activez le changement de couleur
-                            if (discoLight != null)
-                            {
-                                discoLight.enabled = true;
-                                Debug.Log("DiscoLight enabled");
-                            }
+                        // Activez tous les objets
+                        foreach (GameObject discoObject in discoObjects)
+                        {
+                            discoObject.SetActive(true);
+                        }
 
-                            // Activez toutes les lumières enfants
-                            foreach (Transform child in transform)
+                        // Activez le changement de couleur
+                        if (discoLight != null)
+                        {
+                            discoLight.enabled = true;
+                            Debug.Log("DiscoLight enabled");
+                        }
+
+                        // Activez toutes les lumières enfants
+                        foreach (Transform child in transform)
+                        {
+                            Light childLight = child.GetComponent<Light>();
+                            if (childLight != null)
                             {
-                                Light childLight = child.GetComponent<Light>();
-                                if (childLight != null)
+                                childLight.enabled = true;
+                                DiscoLight childDiscoLight = child.GetComponent<DiscoLight>();
+                                if (childDiscoLight == null)
                                 {
-                                    childLight.enabled = true;
-                                    DiscoLight childDiscoLight = child.GetComponent<DiscoLight>();
-                                    if (childDiscoLight == null)
-                                    {
-                                        childDiscoLight = child.gameObject.AddComponent<DiscoLight>();
-                                    }
-                                    childDiscoLight.enabled = true;
+                                    childDiscoLight = child.gameObject.AddComponent<DiscoLight>();
                                 }
+                                childDiscoLight.enabled = true;
                             }
+                        }
 
-                            // Éteignez la lumière spéciale
-                            if (specialLight != null)
-                            {
-                                specialLight.enabled = false;
-                            }
+                        // Éteignez la lumière spéciale
+                        if (specialLight != null)
+                        {
+                            specialLight.enabled = false;
+                        }
 
-                            // Commencez le shake quand la radio est allumée
-                            if (cameraShake != null)
-                            {
-                                cameraShake.StartShake();
-                                Debug.Log("Camera shake started");
-                            }
+                        // Commencez le shake quand la radio est allumée
+                        if (cameraShake != null)
+                        {
+                            cameraShake.StartShake();
+                            Debug.Log("Camera shake started");
                         }
                     }
                 }
