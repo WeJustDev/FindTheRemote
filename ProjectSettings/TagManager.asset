@@ -8,7 +8,9 @@ TagManager:
   - Light
   - Telecommande
   - TAZOFX
-  - Rubis
+  - RedKeyCrystal
+  - BlueKeyCrystal
+  - GreenKeyCrystal
   layers:
   - Default
   - TransparentFX
