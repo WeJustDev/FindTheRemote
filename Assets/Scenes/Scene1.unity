@@ -1371,7 +1371,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9de84f08ffb8b1f48bfc6045221a8050, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  sceneToLoad: Scene3
+  sceneToLoad: SceneJeremy
   isActivated: 0
 --- !u!135 &138312295
 SphereCollider:
