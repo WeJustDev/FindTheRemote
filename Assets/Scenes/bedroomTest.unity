@@ -1250,6 +1250,14 @@ MonoBehaviour:
       m_Calls: []
     m_ActionId: 308fded7-d230-438d-8271-573ac54196d2
     m_ActionName: Player/Sprint[/Keyboard/shift]
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: 59ab5bd4-c701-466a-a112-5931650be132
+    m_ActionName: Player/Grab[/Keyboard/e]
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: 019df754-3d93-4d21-a463-6306a3e33458
+    m_ActionName: Player/Displace[/Keyboard/f]
   m_NeverAutoSwitchControlSchemes: 0
   m_DefaultControlScheme: 
   m_DefaultActionMap: Player
@@ -1268,6 +1276,14 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   characterController: {fileID: 0}
+  playerCamera: {fileID: 0}
+  pickupRange: 3
+  telecomande_bouton: {fileID: 0}
+  telecomande_Led: {fileID: 0}
+  World_Light: {fileID: 0}
+  pickupSpeed: 10
+  wrist: {fileID: 0}
+  pickupUI: {fileID: 0}
 --- !u!1 &705507993
 GameObject:
   m_ObjectHideFlags: 0
@@ -2237,6 +2253,14 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   characterController: {fileID: 924380439}
+  playerCamera: {fileID: 1469154847}
+  pickupRange: 3
+  telecomande_bouton: {fileID: 0}
+  telecomande_Led: {fileID: 0}
+  World_Light: {fileID: 0}
+  pickupSpeed: 10
+  wrist: {fileID: 249835233}
+  pickupUI: {fileID: 2258507095202790941}
 --- !u!114 &924380436
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2342,45 +2366,31 @@ MonoBehaviour:
         m_CallState: 2
     m_ActionId: 308fded7-d230-438d-8271-573ac54196d2
     m_ActionName: Player/Sprint[/Keyboard/shift]
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: 59ab5bd4-c701-466a-a112-5931650be132
+    m_ActionName: Player/Grab[/Keyboard/e]
+  - m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 924380435}
+        m_TargetAssemblyTypeName: PlayerControls, Assembly-CSharp
+        m_MethodName: OnPickup
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+    m_ActionId: 019df754-3d93-4d21-a463-6306a3e33458
+    m_ActionName: Player/Displace[/Keyboard/f]
   m_NeverAutoSwitchControlSchemes: 0
   m_DefaultControlScheme: 
   m_DefaultActionMap: Player
   m_SplitScreenIndex: -1
   m_Camera: {fileID: 0}
---- !u!114 &924380437
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 924380434}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 56519c10aca0e4e48bb30fb578c436eb, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  playerCamera: {fileID: 1469154847}
-  pickupRange: 3
-  telecomande_bouton: {fileID: 0}
-  telecomande_Led: {fileID: 0}
-  World_Light: {fileID: 0}
-  pickupSpeed: 10
-  wrist: {fileID: 249835233}
-  pickupUI: {fileID: 0}
---- !u!114 &924380438
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 924380434}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 4d1730ff3b0f45942b98a2d581cafbcf, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  speed: 3
-  jumpForce: 6
 --- !u!143 &924380439
 CharacterController:
   m_ObjectHideFlags: 0
@@ -2766,12 +2776,6 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 1782702501690864755, guid: 60770bdb4dc667c45bea53db0339dc05, type: 3}
       insertIndex: -1
       addedObject: {fileID: 924380439}
-    - targetCorrespondingSourceObject: {fileID: 1782702501690864755, guid: 60770bdb4dc667c45bea53db0339dc05, type: 3}
-      insertIndex: -1
-      addedObject: {fileID: 924380438}
-    - targetCorrespondingSourceObject: {fileID: 1782702501690864755, guid: 60770bdb4dc667c45bea53db0339dc05, type: 3}
-      insertIndex: -1
-      addedObject: {fileID: 924380437}
     - targetCorrespondingSourceObject: {fileID: 1782702501690864755, guid: 60770bdb4dc667c45bea53db0339dc05, type: 3}
       insertIndex: -1
       addedObject: {fileID: 924380436}
