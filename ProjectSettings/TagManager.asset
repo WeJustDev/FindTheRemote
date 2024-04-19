@@ -11,6 +11,8 @@ TagManager:
   - RedKeyCrystal
   - BlueKeyCrystal
   - GreenKeyCrystal
+  - Radio
+  - disco
   layers:
   - Default
   - TransparentFX
