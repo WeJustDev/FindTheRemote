@@ -9,6 +9,8 @@ TagManager:
   - Telecommande
   - TAZOFX
   - Rubis
+  - Radio
+  - disco
   layers:
   - Default
   - TransparentFX
