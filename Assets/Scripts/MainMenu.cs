@@ -23,7 +23,6 @@ public class MainMenu : MonoBehaviour
         PlayerPrefs.SetInt("ShowTimer", timerToggle.isOn ? 1 : 0);
         PlayerPrefs.SetInt("ShowProximity", proximityToggle.isOn ? 1 : 0);
         PlayerPrefs.Save();
-
         
         SceneManager.LoadScene("bedroomTest");
     }
