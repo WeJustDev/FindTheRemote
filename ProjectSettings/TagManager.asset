@@ -4,7 +4,15 @@
 TagManager:
   serializedVersion: 2
   tags:
-  - lightToggle
+  - Ramassable
+  - Light
+  - Telecommande
+  - TAZOFX
+  - RedKeyCrystal
+  - BlueKeyCrystal
+  - GreenKeyCrystal
+  - Radio
+  - disco
   layers:
   - Default
   - TransparentFX
@@ -12,7 +20,7 @@ TagManager:
   - 
   - Water
   - UI
-  - 
+  - Camera_perso
   - 
   - 
   - 
