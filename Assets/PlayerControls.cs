@@ -24,12 +24,125 @@ public class PlayerControls : MonoBehaviour
     public GameObject pickupUI;
     private bool isPickedUp = false;
     private Transform pickedUpObject;
+    public Transform mainDuPersonnage;
+    public float forceLancer = 10f;
+    public float distanceMaxRamassage = 3f;
+    private GameObject objetEnMain;
+
 
     // Start is called before the first frame update
     void Start()
     {
         MoveDir = Vector3.zero;
         animator = GetComponent<Animator>();
+    }
+
+    public void OnGrab()
+    {
+        if (objetEnMain != null)
+        {
+            PoserObjet();
+        }
+        else
+        {
+            RamasserObjet();
+        }
+    }
+
+    void PoserObjet()
+    {
+        // Remettre l'objet au sol
+        objetEnMain.transform.SetParent(null);
+        Rigidbody rb = objetEnMain.GetComponent<Rigidbody>();
+        rb.isKinematic = false;
+        rb.useGravity = true;
+        objetEnMain = null;
+        animator.SetBool("Telecommande", false);
+    }
+
+    IEnumerator InteragirTelecommande()
+    {
+        // Lancer l'intéraction de la télécommande
+        animator.SetBool("TelecommandePush", true);
+        yield return StartCoroutine(AnimateButton());
+        animator.SetBool("TelecommandePush", false);
+    }
+
+    IEnumerator AnimateButton()
+    {
+        yield return new WaitForSeconds(0.95f);
+        // Réduire l'échelle du bouton à 0.23
+        Vector3 targetScale = new Vector3(0.792043f, 0.3946826f, 0.23f);
+        telecomande_bouton.transform.localScale = targetScale;
+
+        yield return new WaitForSeconds(1f); // Attendre pendant 0.5 secondes
+
+        Light telecommandeLed = telecomande_Led.GetComponent<Light>();
+        telecommandeLed.intensity = 0f;
+        yield return new WaitForSeconds(0.5f); // Attendre pendant 0.5 secondes
+        telecommandeLed.intensity = 30f;
+        yield return new WaitForSeconds(0.5f); // Attendre pendant 0.5 secondes
+        telecommandeLed.intensity = 0f;
+        yield return new WaitForSeconds(0.5f); // Attendre pendant 0.5 secondes
+        telecommandeLed.intensity = 30f;
+        yield return new WaitForSeconds(0.5f); // Attendre pendant 0.5 secondes
+        telecommandeLed.intensity = 0f;
+        yield return new WaitForSeconds(0.5f); // Attendre pendant 0.5 secondes
+        telecommandeLed.intensity = 30f;
+        yield return new WaitForSeconds(1f); // Attendre pendant 0.5 secondes
+
+        // Remettre l'échelle du bouton à sa taille d'origine
+        targetScale = new Vector3(0.792043f, 0.3946826f, 0.4297258f);
+        telecomande_bouton.transform.localScale = targetScale;
+    }
+
+    void RamasserObjet()
+    {
+        RaycastHit hit;
+        if (Physics.Raycast(Camera.main.ScreenPointToRay(Input.mousePosition), out hit, distanceMaxRamassage))
+        {
+            if (hit.collider.CompareTag("Ramassable") || hit.collider.CompareTag("RedKeyCrystal") || hit.collider.CompareTag("GreenKeyCrystal") || hit.collider.CompareTag("BlueKeyCrystal"))
+            {
+                objetEnMain = hit.collider.gameObject;
+                objetEnMain.GetComponent<Rigidbody>().isKinematic = true;
+                animator.SetBool("Telecommande", true);
+                objetEnMain.transform.SetParent(mainDuPersonnage);
+                Vector3 customPosition = new Vector3(0.155f, 0.027f, 0.09f);
+                objetEnMain.transform.localPosition = customPosition;
+                Quaternion rotation = Quaternion.Euler(34.9f, -54.8f, -121f);
+                objetEnMain.transform.localRotation = rotation;
+                objetEnMain.GetComponent<Rigidbody>().useGravity = false;
+            }
+            else if (hit.collider.CompareTag("Telecommande")) // Nouvelle condition pour ramasser la télécommande
+            {
+                objetEnMain = hit.collider.gameObject;
+                objetEnMain.GetComponent<Rigidbody>().isKinematic = true;
+                animator.SetBool("Telecommande", true);
+                objetEnMain.transform.SetParent(mainDuPersonnage);
+                Vector3 customPosition = new Vector3(0.155f, 0.027f, 0.09f);
+                objetEnMain.transform.localPosition = customPosition;
+                Quaternion rotation = Quaternion.Euler(34.9f, -54.8f, -121f);
+                objetEnMain.transform.localRotation = rotation;
+                objetEnMain.GetComponent<Rigidbody>().useGravity = false;
+            }
+        }
+    }
+
+    IEnumerator LancerObjetAprèsAnimation()
+    {
+        yield return new WaitForSeconds(1f);
+        LancerObjet(); // Lancez l'objet après le délai
+    }
+
+    void LancerObjet()
+    {
+        objetEnMain.transform.SetParent(null);
+        Rigidbody rb = objetEnMain.GetComponent<Rigidbody>();
+        rb.isKinematic = false;
+        rb.useGravity = true;
+        rb.AddForce(Camera.main.transform.forward * forceLancer, ForceMode.Impulse);
+        objetEnMain = null;
+        animator.SetBool("Telecommande", false);
     }
 
     public void OnPickup()
@@ -63,17 +176,6 @@ public class PlayerControls : MonoBehaviour
                 isPickedUp = true;
                 pickedUpObject.GetComponent<Rigidbody>().useGravity = false;
             }
-            else if (objectToPickup.CompareTag("Telecommande"))
-            {
-                animator.SetBool("Telecommande", true);
-                pickedUpObject = objectToPickup;
-                pickedUpObject.parent = wrist;
-                Vector3 customPosition = new Vector3(0.155f, 0.027f, 0.09f);
-                pickedUpObject.localPosition = customPosition;
-                Quaternion rotation = Quaternion.Euler(34.9f, -54.8f, -121f);
-                pickedUpObject.localRotation = rotation;
-                pickedUpObject.GetComponent<Rigidbody>().useGravity = false;
-            }
         }
     }
     
@@ -87,48 +189,6 @@ public class PlayerControls : MonoBehaviour
         pickedUpObject.GetComponent<Rigidbody>().useGravity = true;
         isPickedUp = false;
         pickedUpObject = null;
-    }
-    
-    IEnumerator AnimateButton()
-    {
-        yield return new WaitForSeconds(0.95f);
-        Vector3 targetScale = new Vector3(0.792043f, 0.3946826f, 0.23f);
-        telecomande_bouton.transform.localScale = targetScale;
-        yield return new WaitForSeconds(1f);
-        Light telecommandeLed = telecomande_Led.GetComponent<Light>();
-        telecommandeLed.intensity = 0f;
-        yield return new WaitForSeconds(0.5f);
-        telecommandeLed.intensity = 30f;
-        yield return new WaitForSeconds(0.5f);
-        telecommandeLed.intensity = 0f;
-        yield return new WaitForSeconds(0.5f);
-        telecommandeLed.intensity = 30f;
-        yield return new WaitForSeconds(0.5f);
-        telecommandeLed.intensity = 0f;
-        yield return new WaitForSeconds(0.5f);
-        telecommandeLed.intensity = 30f;
-        yield return new WaitForSeconds(1f);
-        if (World_Light != null)
-        {
-            float targetIntensity = 1000f;
-            float duration = 1f;
-            float timer = 0f;
-            while (timer < duration)
-            {
-                timer += Time.deltaTime;
-                float progress = timer / duration;
-                World_Light.intensity = Mathf.Lerp(0f, targetIntensity, progress);
-                yield return null;
-            }
-            World_Light.intensity = targetIntensity;
-        }
-        yield return new WaitForSeconds(8f);
-        targetScale = new Vector3(0.792043f, 0.3946826f, 0.4297258f);
-        telecomande_bouton.transform.localScale = targetScale;
-        if (World_Light != null)
-        {
-            World_Light.intensity = 0f;
-        }
     }
 
     public void OnMove(InputAction.CallbackContext ctxt) {
@@ -186,6 +246,33 @@ public class PlayerControls : MonoBehaviour
             MovePickedUpObject();
         }
     
+        if (Input.GetMouseButtonDown(1) && objetEnMain != null)
+        {   
+            animator.SetBool("isThrowing", true);
+            StartCoroutine(LancerObjetAprèsAnimation());
+        }
+        else
+        {
+            animator.SetBool("isThrowing", false);
+        }
+
+        if (Input.GetMouseButtonDown(0) && objetEnMain != null && objetEnMain.CompareTag("Telecommande"))
+        {
+            animator.SetBool("TelecommandePush", true);
+            StartCoroutine(AnimateButton());
+
+            // Si l'objet ramassé est la télécommande et que le bouton gauche de la souris est cliqué, active les animations et le passage du portail
+            ClickableObject clickableObject = objetEnMain.GetComponent<ClickableObject>();
+            if (clickableObject != null)
+            {
+                clickableObject.OnMouseDown();
+            } 
+        }
+        else 
+        {
+            animator.SetBool("TelecommandePush", false);
+        }
+
         // Appliquer la gravité
         PlayerVelocity.y -= Gravity * Time.deltaTime;
     
