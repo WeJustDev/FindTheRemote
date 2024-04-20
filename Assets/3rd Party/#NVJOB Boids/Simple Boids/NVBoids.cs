@@ -257,28 +257,34 @@ public class NVBoids : MonoBehaviour
 
 
     void CreateBird()
+{
+    //--------------
+
+    birdsTransform = new Transform[birdsNum];
+    birdsSpeed = new float[birdsNum];
+    birdsSpeedCur = new float[birdsNum];
+    rdTargetPos = new Vector3[birdsNum];
+    spVelocity = new float[birdsNum];
+
+    for (int b = 0; b < birdsNum; b++)
     {
-        //--------------
+        birdsTransform[b] = Instantiate(birdPref, thisTransform).transform;
+        Vector3 lpv = Random.insideUnitSphere * fragmentedBirds;
 
-        birdsTransform = new Transform[birdsNum];
-        birdsSpeed = new float[birdsNum];
-        birdsSpeedCur = new float[birdsNum];
-        rdTargetPos = new Vector3[birdsNum];
-        spVelocity = new float[birdsNum];
+        // Limitez la position verticale par rapport au sol en ajustant lpv.y
+        lpv.y = Mathf.Clamp(lpv.y, 0.1f, fragmentedBirdsYLimit);
 
-        for (int b = 0; b < birdsNum; b++)
-        {
-            birdsTransform[b] = Instantiate(birdPref, thisTransform).transform;
-            Vector3 lpv = Random.insideUnitSphere * fragmentedBirds;
-            birdsTransform[b].localPosition = rdTargetPos[b] = new Vector3(lpv.x, lpv.y * fragmentedBirdsYLimit, lpv.z);
-            birdsTransform[b].localScale = Vector3.one * Random.Range(scaleRandom.x, scaleRandom.y);
-            birdsTransform[b].localRotation = Quaternion.Euler(0, Random.value * 360, 0);
-            curentFlock[b] = Random.Range(0, flockNum);
-            birdsSpeed[b] = Random.Range(3.0f, 7.0f);
-        }
-
-        //--------------
+        // Limitez la position horizontale par rapport à l'origine en ajustant lpv.x et lpv.z
+        lpv.x = Mathf.Clamp(lpv.x, -fragmentedBirds, fragmentedBirds); // Ajoutez cette ligne
+        lpv.z = Mathf.Clamp(lpv.z, -fragmentedBirds, fragmentedBirds); // Ajoutez cette ligne
+        
+        birdsTransform[b].localPosition = rdTargetPos[b] = new Vector3(lpv.x, lpv.y * fragmentedBirdsYLimit, lpv.z);
+        birdsTransform[b].localScale = Vector3.one * Random.Range(scaleRandom.x, scaleRandom.y);
+        birdsTransform[b].localRotation = Quaternion.Euler(0, Random.value * 360, 0);
+        curentFlock[b] = Random.Range(0, flockNum);
+        birdsSpeed[b] = Random.Range(3.0f, 7.0f);
     }
+}
 
 
     ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
