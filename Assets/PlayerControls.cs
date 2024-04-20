@@ -231,9 +231,12 @@ public class PlayerControls : MonoBehaviour
         RaycastHit hit;
         if (Physics.Raycast(playerCamera.transform.position, playerCamera.transform.forward, out hit, pickupRange))
         {
-            if (hit.collider.CompareTag("Ramassable"))
+            if (hit.collider.CompareTag("Ramassable") || hit.collider.CompareTag("RedKeyCrystal") || hit.collider.CompareTag("GreenKeyCrystal") || hit.collider.CompareTag("BlueKeyCrystal") || hit.collider.CompareTag("Telecommande") || hit.collider.CompareTag("Radio"))
             {
-                pickupUI.SetActive(true);
+                if (!isPickedUp && objetEnMain==null)
+                {
+                    pickupUI.SetActive(true);
+                }
             }
             else
             {
@@ -296,11 +299,5 @@ public class PlayerControls : MonoBehaviour
     
         // Déplacer le joueur en fonction de la gravité et de la force de saut
         characterController.Move(PlayerVelocity * Time.deltaTime);
-    
-        if(characterController.isGrounded) {
-            Debug.Log("Grounded");
-        } else {
-            Debug.Log("Not Grounded");
-        }
     }
 }
