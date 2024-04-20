@@ -73,7 +73,7 @@ public class PlayerControls : MonoBehaviour
 
     IEnumerator AnimateButton()
     {
-        yield return new WaitForSeconds(0.95f);
+        yield return new WaitForSeconds(0.85f);
         // Réduire l'échelle du bouton à 0.23
         Vector3 targetScale = new Vector3(0.792043f, 0.3946826f, 0.23f);
         telecomande_bouton.transform.localScale = targetScale;
