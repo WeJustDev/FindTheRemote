@@ -55,9 +55,5 @@ public class ClickableObject : MonoBehaviour
         {
             doorOpen.StartRotation(); // Call StartRotation() instead of RotateDoor()
         }
-        else
-        {
-            Debug.LogWarning("DoorOpen script not assigned.");
-        }
     }
 }

@@ -24,7 +24,7 @@ public class MainMenu : MonoBehaviour
         PlayerPrefs.SetInt("ShowProximity", proximityToggle.isOn ? 1 : 0);
         PlayerPrefs.Save();
         
-        SceneManager.LoadScene("bedroomTest");
+        SceneManager.LoadScene("Scene1");
     }
     
     public void QuitGame()

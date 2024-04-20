@@ -13,8 +13,6 @@ public class PortalTrigger : MonoBehaviour
 
     void OnTriggerEnter(Collider other)
     {
-        Debug.Log("Trigger entered by: " + other.gameObject.name);
-
         // Vérifier si l'objet qui est entré dans la sphère de détection est le joueur
         if (other.gameObject.tag == "Player" && isActivated)
         {
