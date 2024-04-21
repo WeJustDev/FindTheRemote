@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.44657898, g: 0.4964133, b: 0.5748178, a: 1}
+  m_IndirectSpecularColor: {r: 0.44657826, g: 0.49641263, b: 0.57481676, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -17167,11 +17167,6 @@ GameObject:
   m_CorrespondingSourceObject: {fileID: 1782702501690864755, guid: 60770bdb4dc667c45bea53db0339dc05, type: 3}
   m_PrefabInstance: {fileID: 2079095958}
   m_PrefabAsset: {fileID: 0}
---- !u!4 &2079095960 stripped
-Transform:
-  m_CorrespondingSourceObject: {fileID: 5408663870200538173, guid: 60770bdb4dc667c45bea53db0339dc05, type: 3}
-  m_PrefabInstance: {fileID: 2079095958}
-  m_PrefabAsset: {fileID: 0}
 --- !u!4 &2079095961 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 3696354557974323922, guid: 60770bdb4dc667c45bea53db0339dc05, type: 3}
@@ -17196,11 +17191,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   playerCamera: {fileID: 1415804590}
   pickupRange: 3
-  telecomande_bouton: {fileID: 0}
-  telecomande_Led: {fileID: 0}
-  World_Light: {fileID: 0}
   pickupSpeed: 10
-  wrist: {fileID: 2079095960}
+  pickupUI: {fileID: 0}
 --- !u!114 &2079095964
 MonoBehaviour:
   m_ObjectHideFlags: 0
