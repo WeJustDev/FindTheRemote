@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 1376453964}
-  m_IndirectSpecularColor: {r: 0.32727024, g: 0.28189152, b: 0.4168354, a: 1}
+  m_IndirectSpecularColor: {r: 0.32736847, g: 0.2820068, b: 0.41691187, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -2353,6 +2353,11 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 21a364ddeffc797439f2a5721660b0e6, type: 3}
+--- !u!1 &181788499 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 5362864109192528350, guid: e79ec584aa2474345ad0e49e3180fa15, type: 3}
+  m_PrefabInstance: {fileID: 1690989180}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &187386771
 GameObject:
   m_ObjectHideFlags: 0
@@ -15123,7 +15128,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2685943362596878717, guid: 8224aa1f8da80394cba8f14a11dea964, type: 3}
       propertyPath: m_LocalPosition.z
-      value: 352.54593
+      value: 801.5459
       objectReference: {fileID: 0}
     - target: {fileID: 2685943362596878717, guid: 8224aa1f8da80394cba8f14a11dea964, type: 3}
       propertyPath: m_LocalRotation.w
@@ -33520,7 +33525,7 @@ MonoBehaviour:
   World_Light: {fileID: 0}
   pickupSpeed: 10
   wrist: {fileID: 260904207}
-  pickupUI: {fileID: 5362864109192528350, guid: e79ec584aa2474345ad0e49e3180fa15, type: 3}
+  pickupUI: {fileID: 181788499}
   mainDuPersonnage: {fileID: 260904207}
   forceLancer: 20
   distanceMaxRamassage: 3
@@ -33892,7 +33897,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3854195753809079567, guid: ec11dfec52f2a7447a69c242e308ed3a, type: 3}
       propertyPath: m_LocalPosition.z
-      value: 856.7915
+      value: 1305.7915
       objectReference: {fileID: 0}
     - target: {fileID: 3854195753809079567, guid: ec11dfec52f2a7447a69c242e308ed3a, type: 3}
       propertyPath: m_LocalRotation.w
@@ -33925,6 +33930,34 @@ PrefabInstance:
     - target: {fileID: 4112745908346949706, guid: ec11dfec52f2a7447a69c242e308ed3a, type: 3}
       propertyPath: m_Name
       value: PauseContainer
+      objectReference: {fileID: 0}
+    - target: {fileID: 7446454005738988551, guid: ec11dfec52f2a7447a69c242e308ed3a, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7725590066258020017, guid: ec11dfec52f2a7447a69c242e308ed3a, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7725590066258020017, guid: ec11dfec52f2a7447a69c242e308ed3a, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7725590066258020017, guid: ec11dfec52f2a7447a69c242e308ed3a, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7725590066258020017, guid: ec11dfec52f2a7447a69c242e308ed3a, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7725590066258020017, guid: ec11dfec52f2a7447a69c242e308ed3a, type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7725590066258020017, guid: ec11dfec52f2a7447a69c242e308ed3a, type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
