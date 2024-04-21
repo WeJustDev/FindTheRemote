@@ -12,6 +12,8 @@ public class MainMenu : MonoBehaviour
 
     void Start()
     {
+        Cursor.lockState = CursorLockMode.None;
+        Cursor.visible = true;
         timerToggle.isOn = PlayerPrefs.GetInt("ShowTimer", 1) == 1;
         proximityToggle.isOn = PlayerPrefs.GetInt("ShowProximity", 1) == 1;
 
